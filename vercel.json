@@ -1,0 +1,9 @@
+{
+  "projects": [
+    {
+      "srcDir": "frontend",
+      "buildCommand": "next build",
+      "outputDirectory": ".next"
+    }
+  ]
+}
