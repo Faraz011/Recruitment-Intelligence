@@ -1,9 +1,5 @@
 {
-  "projects": [
-    {
-      "srcDir": "frontend",
-      "buildCommand": "next build",
-      "outputDirectory": ".next"
-    }
-  ]
+  "buildCommand": "cd frontend && next build",
+  "outputDirectory": "frontend/.next",
+  "installCommand": "cd frontend && npm ci"
 }
