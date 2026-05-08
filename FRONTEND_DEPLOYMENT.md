@@ -10,6 +10,7 @@
 ## Step 2: Deploy Frontend to Vercel
 
 ### Option A: Via GitHub (Recommended)
+
 1. Go to [Vercel](https://vercel.com)
 2. Click **"New Project"**
 3. Select **"Import Git Repository"**
@@ -18,6 +19,7 @@
 6. Click **Deploy**
 
 ### Option B: Via Vercel CLI
+
 ```bash
 cd frontend
 vercel --prod
@@ -34,6 +36,7 @@ vercel --prod
 4. Click **Save**
 
 Example:
+
 ```
 NEXT_PUBLIC_API_URL = https://recruitment-intelligence-backend-abc123.onrender.com
 ```
@@ -56,17 +59,20 @@ NEXT_PUBLIC_API_URL = https://recruitment-intelligence-backend-abc123.onrender.c
 ## Troubleshooting
 
 ### Still Getting 404 Errors?
+
 - Check that `NEXT_PUBLIC_API_URL` is set correctly in Vercel Dashboard
 - Verify the Render backend URL is accessible (visit it in browser)
 - Check browser **DevTools** → **Network** tab to see actual API calls
 - Ensure backend Render service is running (green check in Render Dashboard)
 
 ### White Blank Screen?
+
 - Check Vercel build logs for errors
 - Verify environment variable is set BEFORE deploying
 - Clear browser cache and hard refresh (Ctrl+Shift+R)
 
 ### Message Port Closed Error?
+
 - This usually means the frontend can't communicate with backend
 - Verify `NEXT_PUBLIC_API_URL` includes `https://` (not `http://`)
 - Ensure no CORS issues (backend should accept Vercel domain)
@@ -82,6 +88,7 @@ NEXT_PUBLIC_API_URL = https://recruitment-intelligence-backend-abc123.onrender.c
 
 **Local Testing**:
 To test locally with Render backend:
+
 ```bash
 # In frontend directory
 NEXT_PUBLIC_API_URL=https://your-render-backend.onrender.com npm run dev
