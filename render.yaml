@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: recruitment-intelligence-api
+    runtime: python
+    pythonVersion: 3.11
+    region: oregon
+    plan: free
+    
+    # Build command
+    buildCommand: "pip install -r requirements.txt"
+    
+    # Start command
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
+    
+    # Environment variables
+    env:
+      - key: GROQ_API_KEY
+        scope: runtime_and_build
+      - key: SUPABASE_URL
+        scope: runtime_and_build
+      - key: SUPABASE_SERVICE_KEY
+        scope: runtime_and_build
+    
+    # Auto-deploy on pushes to main
+    autoDeploy: true
+    
+    # Root directory
+    rootDir: backend
