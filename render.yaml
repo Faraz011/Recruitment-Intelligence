@@ -1,8 +1,7 @@
 services:
   - type: web
     name: recruitment-intelligence-api
-    runtime: python
-    pythonVersion: 3.11
+    runtime: python:3.11
     region: oregon
     plan: free
     
