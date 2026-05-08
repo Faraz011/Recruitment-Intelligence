@@ -1,0 +1,5 @@
+# Git ignore
+.DS_Store
+.env
+.env.local
+scrape_report.txt
