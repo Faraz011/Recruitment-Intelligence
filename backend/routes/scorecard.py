@@ -34,7 +34,7 @@ async def extract_interview_scorecard(request: ExtractScorecardRequest):
         
         scorecard = ScorecardCreate(
             raw_text=request.raw_text,
-            **extracted.model_dump()
+            **extracted.dict()
         )
         
         logger.info(f"Inserting into database...")

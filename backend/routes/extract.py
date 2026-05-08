@@ -28,7 +28,7 @@ async def extract_job_description(request: ExtractJDRequest):
         job_listing = JobListingCreate(
             raw_text=request.raw_text,
             source_url=request.source_url,
-            **extracted.model_dump()
+            **extracted.dict()
         )
         
         logger.info(f"Inserting into database...")
