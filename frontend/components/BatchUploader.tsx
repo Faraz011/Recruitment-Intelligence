@@ -9,12 +9,19 @@ interface BatchUploaderProps {
   onSuccess: () => void;
 }
 
+interface CompletionResult {
+  succeeded: number;
+  failed: number;
+  skipped: number;
+}
+
 export default function BatchUploader({ onSuccess }: BatchUploaderProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState<{
     current: number;
     total: number;
   } | null>(null);
+  const [completionResult, setCompletionResult] = useState<CompletionResult | null>(null);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -36,6 +43,12 @@ export default function BatchUploader({ onSuccess }: BatchUploaderProps) {
           result.failed > 0 ? `, ${result.failed} failed` : ""
         }${result.skipped > 0 ? `, ${result.skipped} skipped` : ""}`,
       );
+
+      setCompletionResult({
+        succeeded: result.succeeded,
+        failed: result.failed,
+        skipped: result.skipped,
+      });
 
       setProgress(null);
       onSuccess();
@@ -110,6 +123,50 @@ export default function BatchUploader({ onSuccess }: BatchUploaderProps) {
               className="bg-blue-500 h-2 rounded-full transition-all"
               style={{ width: `${(progress.current / progress.total) * 100}%` }}
             />
+          </div>
+        </div>
+      )}
+
+      {completionResult && (
+        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="flex items-start justify-between">
+            <div>
+              <h3 className="font-semibold text-green-900 text-lg mb-3">
+                ✓ Batch Processing Complete
+              </h3>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="bg-white rounded p-3 border border-green-100">
+                  <p className="text-xs text-gray-600 font-medium">Succeeded</p>
+                  <p className="text-2xl font-bold text-green-600">
+                    {completionResult.succeeded}
+                  </p>
+                </div>
+                <div className="bg-white rounded p-3 border border-yellow-100">
+                  <p className="text-xs text-gray-600 font-medium">Failed</p>
+                  <p className="text-2xl font-bold text-yellow-600">
+                    {completionResult.failed}
+                  </p>
+                </div>
+                <div className="bg-white rounded p-3 border border-gray-100">
+                  <p className="text-xs text-gray-600 font-medium">Skipped</p>
+                  <p className="text-2xl font-bold text-gray-600">
+                    {completionResult.skipped}
+                  </p>
+                </div>
+              </div>
+              <p className="text-sm text-green-700 mt-3">
+                All {completionResult.succeeded + completionResult.failed + completionResult.skipped} records have been processed.
+                {completionResult.succeeded > 0 && (
+                  <> Successfully added <strong>{completionResult.succeeded}</strong> job descriptions to your dashboard.</>
+                )}
+              </p>
+            </div>
+            <button
+              onClick={() => setCompletionResult(null)}
+              className="text-green-600 hover:text-green-700 font-bold text-lg"
+            >
+              ✕
+            </button>
           </div>
         </div>
       )}
