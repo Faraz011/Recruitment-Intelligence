@@ -2,12 +2,16 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config import API_PREFIX
 from routes import extract, batch, listings, scorecard, scorecards
+from keep_alive import start_keep_alive_scheduler
 
 app = FastAPI(
     title="JD Structura API",
     description="Recruitment Intelligence Pipeline",
     version="1.0.0"
 )
+
+# Start keep-alive scheduler to prevent Render cold starts
+start_keep_alive_scheduler()
 
 # CORS middleware for local dev and Vercel deployment
 app.add_middleware(
