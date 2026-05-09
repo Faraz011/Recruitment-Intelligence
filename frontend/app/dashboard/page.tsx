@@ -249,20 +249,20 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+      <header className="bg-gradient-to-r from-blue-600 to-purple-600 border-b border-blue-500/20 shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-              <p className="text-gray-600 text-sm mt-1">
-                Manage your extracted data
+              <h1 className="text-4xl font-bold text-white mb-2">Dashboard</h1>
+              <p className="text-blue-100 text-sm">
+                📊 Monitor and manage your recruitment intelligence
               </p>
             </div>
             <Link
               href="/"
-              className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors"
+              className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-lg font-medium transition-all duration-200 border border-white/30 backdrop-blur-sm"
             >
               ← Back to Home
             </Link>
@@ -271,64 +271,83 @@ export default function Dashboard() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        {/* Tabs */}
-        <div className="flex gap-2 mb-8 border-b border-gray-200">
+      <main className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+        {/* Tabs - Modern Design */}
+        <div className="flex gap-4 mb-10 bg-gray-800/50 p-2 rounded-xl backdrop-blur-sm border border-gray-700/50">
           <button
             onClick={() => {
               setActiveTab("listings");
               setListingPage(1);
             }}
-            className={`px-4 py-3 font-medium text-sm transition-colors ${
+            className={`flex-1 px-6 py-3 font-semibold text-sm rounded-lg transition-all duration-200 ${
               activeTab === "listings"
-                ? "text-blue-600 border-b-2 border-blue-600"
-                : "text-gray-600 hover:text-gray-900"
+                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg"
+                : "text-gray-300 hover:text-white hover:bg-gray-700/50"
             }`}
           >
-            Job Listings
+            📇 Job Listings
           </button>
           <button
             onClick={() => {
               setActiveTab("scorecards");
               setScorecardPage(1);
             }}
-            className={`px-4 py-3 font-medium text-sm transition-colors ${
+            className={`flex-1 px-6 py-3 font-semibold text-sm rounded-lg transition-all duration-200 ${
               activeTab === "scorecards"
-                ? "text-blue-600 border-b-2 border-blue-600"
-                : "text-gray-600 hover:text-gray-900"
+                ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg"
+                : "text-gray-300 hover:text-white hover:bg-gray-700/50"
             }`}
           >
-            Interview Scorecards
+            📋 Scorecards
           </button>
         </div>
 
         {/* Job Listings Tab */}
         {activeTab === "listings" && (
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <p className="text-sm text-gray-600">Total JDs</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {listingStats.total}
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 backdrop-blur rounded-xl border border-blue-500/30 p-6 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-blue-100 text-sm font-medium">Total JDs</p>
+                    <p className="text-4xl font-bold text-blue-50 mt-2">
+                      {listingStats.total}
+                    </p>
+                  </div>
+                  <div className="text-4xl">📄</div>
+                </div>
               </div>
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <p className="text-sm text-gray-600">Unique Roles</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {listingStats.unique_roles}
-                </p>
+              <div className="bg-gradient-to-br from-green-500/20 to-green-600/10 backdrop-blur rounded-xl border border-green-500/30 p-6 hover:shadow-xl hover:shadow-green-500/10 transition-all duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-green-100 text-sm font-medium">Unique Roles</p>
+                    <p className="text-4xl font-bold text-green-50 mt-2">
+                      {listingStats.unique_roles}
+                    </p>
+                  </div>
+                  <div className="text-4xl">💼</div>
+                </div>
               </div>
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <p className="text-sm text-gray-600">Unique Companies</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {listingStats.unique_companies}
-                </p>
+              <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/10 backdrop-blur rounded-xl border border-purple-500/30 p-6 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-purple-100 text-sm font-medium">Unique Companies</p>
+                    <p className="text-4xl font-bold text-purple-50 mt-2">
+                      {listingStats.unique_companies}
+                    </p>
+                  </div>
+                  <div className="text-4xl">🏢</div>
+                </div>
               </div>
             </div>
 
             {/* Filters & Export */}
             <div className="space-y-4">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="h-1 w-1 bg-blue-400 rounded-full"></div>
+                <h2 className="text-white font-semibold">Filters & Actions</h2>
+              </div>
               <FilterBar
                 type="listings"
                 onFilterChange={(f) => {
@@ -339,9 +358,9 @@ export default function Dashboard() {
 
               <button
                 onClick={exportToCSV}
-                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+                className="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                Export to CSV
+                📥 Export to CSV
               </button>
             </div>
 
@@ -389,31 +408,50 @@ export default function Dashboard() {
 
         {/* Interview Scorecards Tab */}
         {activeTab === "scorecards" && (
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <p className="text-sm text-gray-600">Total Scorecards</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {scorecardStats.total}
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/10 backdrop-blur rounded-xl border border-orange-500/30 p-6 hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-orange-100 text-sm font-medium">Total Scorecards</p>
+                    <p className="text-4xl font-bold text-orange-50 mt-2">
+                      {scorecardStats.total}
+                    </p>
+                  </div>
+                  <div className="text-4xl">📊</div>
+                </div>
               </div>
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <p className="text-sm text-gray-600">Avg. Rating</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {scorecardStats.avg_rating}
-                </p>
+              <div className="bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 backdrop-blur rounded-xl border border-cyan-500/30 p-6 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-cyan-100 text-sm font-medium">Avg. Rating</p>
+                    <p className="text-4xl font-bold text-cyan-50 mt-2">
+                      {scorecardStats.avg_rating}
+                    </p>
+                  </div>
+                  <div className="text-4xl">⭐</div>
+                </div>
               </div>
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <p className="text-sm text-gray-600">Hire Rate</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {scorecardStats.hire_rate}%
-                </p>
+              <div className="bg-gradient-to-br from-pink-500/20 to-pink-600/10 backdrop-blur rounded-xl border border-pink-500/30 p-6 hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-pink-100 text-sm font-medium">Hire Rate</p>
+                    <p className="text-4xl font-bold text-pink-50 mt-2">
+                      {scorecardStats.hire_rate}%
+                    </p>
+                  </div>
+                  <div className="text-4xl">✅</div>
+                </div>
               </div>
             </div>
 
             {/* Filters & Export */}
             <div className="space-y-4">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="h-1 w-1 bg-purple-400 rounded-full"></div>
+                <h2 className="text-white font-semibold">Filters & Actions</h2>
+              </div>
               <FilterBar
                 type="scorecards"
                 onFilterChange={(f) => {
@@ -424,9 +462,9 @@ export default function Dashboard() {
 
               <button
                 onClick={exportToCSV}
-                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+                className="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                Export to CSV
+                📥 Export to CSV
               </button>
             </div>
 
