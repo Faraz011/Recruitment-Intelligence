@@ -17,93 +17,96 @@ export default function ScorecardTable({
 }: ScorecardTableProps) {
   if (scorecards.length === 0) {
     return (
-      <div className="text-center py-16 bg-gray-800/30 backdrop-blur rounded-xl border border-gray-700/50">
-        <p className="text-gray-400 text-lg">📭 No interview scorecards found</p>
+      <div className="text-center py-12 text-gray-500">
+        <p className="text-sm">No interview scorecards found</p>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-gray-700/50 bg-gray-800/30 backdrop-blur shadow-xl">
+    <div className="overflow-x-auto">
       <table className="w-full text-sm">
-        <thead className="border-b border-gray-700/50 bg-gray-800/50">
+        <thead className="border-b border-gray-300 bg-gray-50">
           <tr>
-            <th className="text-left py-4 px-4 font-semibold text-gray-200">
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
               Candidate
             </th>
-            <th className="text-left py-4 px-4 font-semibold text-gray-200">
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
               Role
             </th>
-            <th className="text-left py-4 px-4 font-semibold text-gray-200">
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
               Rating
             </th>
-            <th className="text-left py-4 px-4 font-semibold text-gray-200">
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
               Recommendation
             </th>
-            <th className="text-left py-4 px-4 font-semibold text-gray-200">
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
               Technical
             </th>
-            <th className="text-left py-4 px-4 font-semibold text-gray-200">
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
               Communication
             </th>
-            <th className="text-left py-4 px-4 font-semibold text-gray-200">
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
               Culture Fit
             </th>
-            <th className="text-left py-4 px-4 font-semibold text-gray-200">
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
+              Strengths
+            </th>
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
+              Weaknesses
+            </th>
+            <th className="text-left py-3 px-4 font-semibold text-gray-900">
               Added
             </th>
-            <th className="text-center py-4 px-4 font-semibold text-gray-200">
+            <th className="text-center py-3 px-4 font-semibold text-gray-900">
               Action
             </th>
           </tr>
         </thead>
         <tbody>
           {scorecards.map((scorecard) => {
-            const badgeColor =
-              hireBadgeColors[scorecard.hire_recommendation] ||
+            const colors = hireBadgeColors[scorecard.hire_recommendation] ||
               hireBadgeColors["Not mentioned"];
-
             return (
               <tr
                 key={scorecard.id}
-                className="border-b border-gray-700/50 hover:bg-purple-500/10 transition-colors"
+                className="border-b border-gray-200 hover:bg-gray-50 transition-colors"
               >
-                <td className="py-4 px-4 font-medium text-gray-100">
+                <td className="py-3 px-4 font-medium text-gray-900">
                   {scorecard.candidate_name}
                 </td>
-                <td className="py-4 px-4 text-gray-300">{scorecard.role}</td>
-                <td className="py-4 px-4">
-                  <div className="flex items-center gap-2">
-                    {renderStars(scorecard.overall_rating)}
-                    <span className="text-sm font-semibold text-gray-200">
-                      {scorecard.overall_rating}/5
-                    </span>
-                  </div>
+                <td className="py-3 px-4 text-gray-700">{scorecard.role}</td>
+                <td className="py-3 px-4 text-gray-900">
+                  {renderStars(scorecard.overall_rating)}
                 </td>
-                <td className="py-4 px-4">
-                  <span
-                    className={`badge px-3 py-1 text-xs font-semibold rounded-full border ${badgeColor}`}
-                  >
+                <td className="py-3 px-4">
+                  <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${colors}`}>
                     {scorecard.hire_recommendation}
                   </span>
                 </td>
-                <td className="py-4 px-4 font-medium text-gray-300">
-                  {scorecard.technical_score || "N/A"}/5
+                <td className="py-3 px-4 text-center text-gray-700">
+                  {scorecard.technical_score}/10
                 </td>
-                <td className="py-4 px-4 font-medium text-gray-300">
-                  {scorecard.communication_score || "N/A"}/5
+                <td className="py-3 px-4 text-center text-gray-700">
+                  {scorecard.communication_score}/10
                 </td>
-                <td className="py-4 px-4 font-medium text-gray-300">
-                  {scorecard.culture_fit_score || "N/A"}/5
+                <td className="py-3 px-4 text-center text-gray-700">
+                  {scorecard.culture_fit_score}/10
                 </td>
-                <td className="py-4 px-4 text-xs text-gray-400">
+                <td className="py-3 px-4 text-xs text-gray-600">
+                  {scorecard.strengths.slice(0, 2).join(", ")}
+                </td>
+                <td className="py-3 px-4 text-xs text-gray-600">
+                  {scorecard.weaknesses.slice(0, 2).join(", ")}
+                </td>
+                <td className="py-3 px-4 text-gray-600 text-xs">
                   {new Date(scorecard.extracted_at).toLocaleDateString()}
                 </td>
                 <td className="py-3 px-4 text-center">
                   <button
                     onClick={() => onDelete(scorecard.id)}
                     disabled={isDeleting.has(scorecard.id)}
-                    className="text-red-400 hover:text-red-300 hover:bg-red-600/20 p-2 rounded-lg disabled:opacity-50 transition-all"
+                    className="text-gray-400 hover:text-red-600 p-1 rounded hover:bg-red-50 disabled:opacity-50 transition-all"
                     title="Delete"
                   >
                     <Trash2 size={18} />

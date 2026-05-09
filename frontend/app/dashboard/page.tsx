@@ -249,20 +249,20 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-600 to-purple-600 border-b border-blue-500/20 shadow-lg">
+      <header className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-4xl font-bold text-white mb-2">Dashboard</h1>
-              <p className="text-blue-100 text-sm">
-                📊 Monitor and manage your recruitment intelligence
+              <h1 className="text-3xl font-bold text-gray-900 mb-1">Dashboard</h1>
+              <p className="text-gray-600 text-sm">
+                Monitor and manage your recruitment intelligence
               </p>
             </div>
             <Link
               href="/"
-              className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-lg font-medium transition-all duration-200 border border-white/30 backdrop-blur-sm"
+              className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg font-medium transition-colors duration-200"
             >
               ← Back to Home
             </Link>
@@ -272,33 +272,33 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
-        {/* Tabs - Modern Design */}
-        <div className="flex gap-4 mb-10 bg-gray-800/50 p-2 rounded-xl backdrop-blur-sm border border-gray-700/50">
+        {/* Tabs */}
+        <div className="flex gap-2 mb-10 border-b border-gray-200">
           <button
             onClick={() => {
               setActiveTab("listings");
               setListingPage(1);
             }}
-            className={`flex-1 px-6 py-3 font-semibold text-sm rounded-lg transition-all duration-200 ${
+            className={`px-6 py-3 font-semibold text-sm border-b-2 transition-colors duration-200 ${
               activeTab === "listings"
-                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg"
-                : "text-gray-300 hover:text-white hover:bg-gray-700/50"
+                ? "border-gray-900 text-gray-900"
+                : "border-transparent text-gray-600 hover:text-gray-900"
             }`}
           >
-            📇 Job Listings
+            Job Listings
           </button>
           <button
             onClick={() => {
               setActiveTab("scorecards");
               setScorecardPage(1);
             }}
-            className={`flex-1 px-6 py-3 font-semibold text-sm rounded-lg transition-all duration-200 ${
+            className={`px-6 py-3 font-semibold text-sm border-b-2 transition-colors duration-200 ${
               activeTab === "scorecards"
-                ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg"
-                : "text-gray-300 hover:text-white hover:bg-gray-700/50"
+                ? "border-gray-900 text-gray-900"
+                : "border-transparent text-gray-600 hover:text-gray-900"
             }`}
           >
-            📋 Scorecards
+            Scorecards
           </button>
         </div>
 
@@ -306,48 +306,30 @@ export default function Dashboard() {
         {activeTab === "listings" && (
           <div className="space-y-8">
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 backdrop-blur rounded-xl border border-blue-500/30 p-6 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-blue-100 text-sm font-medium">Total JDs</p>
-                    <p className="text-4xl font-bold text-blue-50 mt-2">
-                      {listingStats.total}
-                    </p>
-                  </div>
-                  <div className="text-4xl">📄</div>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <p className="text-gray-600 text-sm font-medium">Total JDs</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  {listingStats.total}
+                </p>
               </div>
-              <div className="bg-gradient-to-br from-green-500/20 to-green-600/10 backdrop-blur rounded-xl border border-green-500/30 p-6 hover:shadow-xl hover:shadow-green-500/10 transition-all duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-green-100 text-sm font-medium">Unique Roles</p>
-                    <p className="text-4xl font-bold text-green-50 mt-2">
-                      {listingStats.unique_roles}
-                    </p>
-                  </div>
-                  <div className="text-4xl">💼</div>
-                </div>
+              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <p className="text-gray-600 text-sm font-medium">Unique Roles</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  {listingStats.unique_roles}
+                </p>
               </div>
-              <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/10 backdrop-blur rounded-xl border border-purple-500/30 p-6 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-purple-100 text-sm font-medium">Unique Companies</p>
-                    <p className="text-4xl font-bold text-purple-50 mt-2">
-                      {listingStats.unique_companies}
-                    </p>
-                  </div>
-                  <div className="text-4xl">🏢</div>
-                </div>
+              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <p className="text-gray-600 text-sm font-medium">Unique Companies</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  {listingStats.unique_companies}
+                </p>
               </div>
             </div>
 
             {/* Filters & Export */}
             <div className="space-y-4">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="h-1 w-1 bg-blue-400 rounded-full"></div>
-                <h2 className="text-white font-semibold">Filters & Actions</h2>
-              </div>
+              <h2 className="text-gray-900 font-semibold text-sm">Filters & Actions</h2>
               <FilterBar
                 type="listings"
                 onFilterChange={(f) => {
@@ -358,14 +340,14 @@ export default function Dashboard() {
 
               <button
                 onClick={exportToCSV}
-                className="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                className="w-full md:w-auto px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors duration-200"
               >
-                📥 Export to CSV
+                Export to CSV
               </button>
             </div>
 
             {/* Table */}
-            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
               {isLoading ? (
                 <div className="p-8 text-center text-gray-600">Loading...</div>
               ) : (
@@ -377,7 +359,7 @@ export default function Dashboard() {
                   />
 
                   {/* Pagination */}
-                  <div className="flex justify-between items-center px-4 py-4 border-t border-gray-200 bg-gray-50">
+                  <div className="flex justify-between items-center px-6 py-4 border-t border-gray-200 bg-white">
                     <span className="text-sm text-gray-600">
                       Page {listingPage} of {listingTotalPages}
                     </span>
@@ -387,14 +369,14 @@ export default function Dashboard() {
                           setListingPage((p) => Math.max(1, p - 1))
                         }
                         disabled={listingPage === 1}
-                        className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 disabled:opacity-50 transition-colors"
+                        className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 text-gray-700 hover:text-gray-900 transition-colors"
                       >
                         Previous
                       </button>
                       <button
                         onClick={() => setListingPage((p) => p + 1)}
                         disabled={listingPage >= listingTotalPages}
-                        className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 disabled:opacity-50 transition-colors"
+                        className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 text-gray-700 hover:text-gray-900 transition-colors"
                       >
                         Next
                       </button>
@@ -410,48 +392,30 @@ export default function Dashboard() {
         {activeTab === "scorecards" && (
           <div className="space-y-8">
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/10 backdrop-blur rounded-xl border border-orange-500/30 p-6 hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-orange-100 text-sm font-medium">Total Scorecards</p>
-                    <p className="text-4xl font-bold text-orange-50 mt-2">
-                      {scorecardStats.total}
-                    </p>
-                  </div>
-                  <div className="text-4xl">📊</div>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <p className="text-gray-600 text-sm font-medium">Total Scorecards</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  {scorecardStats.total}
+                </p>
               </div>
-              <div className="bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 backdrop-blur rounded-xl border border-cyan-500/30 p-6 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-cyan-100 text-sm font-medium">Avg. Rating</p>
-                    <p className="text-4xl font-bold text-cyan-50 mt-2">
-                      {scorecardStats.avg_rating}
-                    </p>
-                  </div>
-                  <div className="text-4xl">⭐</div>
-                </div>
+              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <p className="text-gray-600 text-sm font-medium">Avg. Rating</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  {scorecardStats.avg_rating}
+                </p>
               </div>
-              <div className="bg-gradient-to-br from-pink-500/20 to-pink-600/10 backdrop-blur rounded-xl border border-pink-500/30 p-6 hover:shadow-xl hover:shadow-pink-500/10 transition-all duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-pink-100 text-sm font-medium">Hire Rate</p>
-                    <p className="text-4xl font-bold text-pink-50 mt-2">
-                      {scorecardStats.hire_rate}%
-                    </p>
-                  </div>
-                  <div className="text-4xl">✅</div>
-                </div>
+              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <p className="text-gray-600 text-sm font-medium">Hire Rate</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  {scorecardStats.hire_rate}%
+                </p>
               </div>
             </div>
 
             {/* Filters & Export */}
             <div className="space-y-4">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="h-1 w-1 bg-purple-400 rounded-full"></div>
-                <h2 className="text-white font-semibold">Filters & Actions</h2>
-              </div>
+              <h2 className="text-gray-900 font-semibold text-sm">Filters & Actions</h2>
               <FilterBar
                 type="scorecards"
                 onFilterChange={(f) => {
@@ -462,14 +426,14 @@ export default function Dashboard() {
 
               <button
                 onClick={exportToCSV}
-                className="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                className="w-full md:w-auto px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors duration-200"
               >
-                📥 Export to CSV
+                Export to CSV
               </button>
             </div>
 
             {/* Table */}
-            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
               {isLoading ? (
                 <div className="p-8 text-center text-gray-600">Loading...</div>
               ) : (
@@ -481,7 +445,7 @@ export default function Dashboard() {
                   />
 
                   {/* Pagination */}
-                  <div className="flex justify-between items-center px-4 py-4 border-t border-gray-200 bg-gray-50">
+                  <div className="flex justify-between items-center px-6 py-4 border-t border-gray-200 bg-white">
                     <span className="text-sm text-gray-600">
                       Page {scorecardPage} of {scorecardTotalPages}
                     </span>
@@ -491,14 +455,14 @@ export default function Dashboard() {
                           setScorecardPage((p) => Math.max(1, p - 1))
                         }
                         disabled={scorecardPage === 1}
-                        className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 disabled:opacity-50 transition-colors"
+                        className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 text-gray-700 hover:text-gray-900 transition-colors"
                       >
                         Previous
                       </button>
                       <button
                         onClick={() => setScorecardPage((p) => p + 1)}
                         disabled={scorecardPage >= scorecardTotalPages}
-                        className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 disabled:opacity-50 transition-colors"
+                        className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 text-gray-700 hover:text-gray-900 transition-colors"
                       >
                         Next
                       </button>
